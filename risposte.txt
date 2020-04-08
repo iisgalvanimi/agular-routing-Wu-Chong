@@ -31,3 +31,18 @@ Con la variabile locale t si fa un itinerario del vettore results.tracks.items.
 Fa visualizzare l’immagine dell’album che sta alla posizione 0, rendendolo responsive
 {{ t.artists[0].name }}
 Visualizza il nome dell'attributo dell'oggetto contenuto nella posizione 0 dell'array artists.
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+1. Descrivi queste linee di codice (puoi far riferimento a questa guida https://angular.io/guide/router#configuration )
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: 'search', component: SearchComponent }
+];
+Assegna alla costante routes un vettore di oggetti contenente 2 oggetti dove messi 2 chiavi, una path (ossia il percorso/route) con il relativo valore
+e component (si riferisce a quale componente utilizzare per la rappresenzione e visualizzazione delle informazioni)
+
+2. Quale tag si usa per contenere le differenti route nel file app.component.html
+Si usano i seguenti tag: routerLink

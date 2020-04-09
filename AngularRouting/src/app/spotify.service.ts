@@ -12,9 +12,15 @@ export class SpotifyService {
   searchTrack(query: string) {
 
     const url = `https://api.spotify.com/v1/search?q=${query}&type=track`;
-    const headers = new HttpHeaders({Authorization: environment.oauthToken});
+    const headers = new HttpHeaders({ Authorization: environment.oauthToken });
 
     let obsTracks = this.http.get(url, { headers });
     return obsTracks;
+  }
+  getTrack(id: string) {
+    const url = `https://api.spotify.com/v1/tracks/${id}`;
+    const headers = new HttpHeaders({ Authorization: environment.oauthToken });
+
+    return this.http.get(url, { headers });
   }
 }

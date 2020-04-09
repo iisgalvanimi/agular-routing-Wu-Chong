@@ -1,25 +1,37 @@
+01.0
+
 1. Che senso ha parlare di routing in una Single Page Application?
 Una single page application è appunto un’applicazione basata su un’unica pagina, che permette di caricare soltanto il contenuto della pagina e non l’intero template.
+
 2. Che differenza c’è tra il routing in Node js e il routing in Angular?
 La differenza più grande è che con il routing in NodeJS si lavora lato server, invece il routing in Angular, si lavora al front end, ossia lato client.
+
 3. Cosa significa che un componente è @Injectable?
 Significa che permette di inserire un oggetto all'interno della classe, direttamente nel costruttore cosicché abbia già un attributo http istanziato e con utilizzo immediato.
+
 4. In che modo puoi fornire dati alle API di spotify (ad esempio il titolo di una traccia e il fatto che sia una traccia)
 Le api di spotify vengono  forniti tramite parametro HTTP.
+
 5. In che formato va fornito il codice OAuth? in quale parte della richiesta http va scritto?
 Viene fornita in formato json e viene scritto nella intestazione HTTP.
+
 6. Cosa ritorna lo spotify service?
 Ritorna un observable ai componenti che richiedono il servizio
+
 7. Come si può usare lo spotify service all’interno di un componente?
 Per quale ragione abbiamo diviso l’applicazione in componenti, servizi e routing?
+
 8. Perché stiamo creando un'applicazione complessa dove è meglio separare le funzione:
 nel componente, vengono rappresentate  e visualizzate le informazioni;
 servizi, dove vengono fatte le richieste http;
 routing gestiscono le richieste fatte dal browser.
+
 9. A cosa serve il metodo submit? 
 A ottenere il json di tale traccia.
+
 10. Da dove viene preso il valore della query?
 Viene preso dal valore in input che viene inserito dall’utente.
+
 11. A cosa servono le seguenti righe di codice?
 <div *ngIf="!results.tracks || results.tracks.items.length ==0">
 Visualizza il div se è diversa la traccia è vuota. 
@@ -34,6 +46,7 @@ Visualizza il nome dell'attributo dell'oggetto contenuto nella posizione 0 dell'
 
 
 ------------------------------------------------------------------------------------------------------------------------------------
+01.1
 
 1. Descrivi queste linee di codice (puoi far riferimento a questa guida https://angular.io/guide/router#configuration )
 
@@ -45,4 +58,28 @@ Assegna alla costante routes un vettore di oggetti contenente 2 oggetti dove mes
 e component (si riferisce a quale componente utilizzare per la rappresenzione e visualizzazione delle informazioni)
 
 2. Quale tag si usa per contenere le differenti route nel file app.component.html
-Si usano i seguenti tag: routerLink
+Si usa il seguente tag: routeroutlet
+
+3. Come fa il prof a sapere l’url specifico da richiamare sulle API di Spotify?
+Grazie all'identicativo della track, che in questo caso è l'id, ottenuto dal JSON (cioè la risposta del server) della richiesta alle API.
+
+4. A cosa serve il routeObs: Observable<ParamMap>;
+E' un oggetto observable che osserva gli eventi su codesta route, restituendo  tutti i  parametri che sono contenuti nel ParamMap,
+che sono stati passati dall’url
+
+5. A cosa serve il parametro del costruttore private route: ActivatedRoute?
+Questo determinato parametro presente nel costruttore ci consente di gestire il component.
+
+6. A cosa serve la ParamMap ottenuta dal routeObs (params: ParamMap) ?
+Serve ad ottenere i parametri dell'url della route per poterli utilizzare.
+
+7. Cosa ritorna il metodo getTrack?
+7.1 return this.http.get(url, { headers });
+La funzione getTrack ci ritorna la traccia specifica di quel determinato id.
+
+8. Descrivi queste righe di codice
+8.1 this.spotifyServiceObs = this.service.getTrack(trackId) ;
+L’observable mantenuta la funzione getTrack , dove viene passato l’id estratto dal parametro della route nel spotifyServiceObs (che è l'observable).
+8.2 this.spotifyServiceObs.subscribe((data)=>this.track = data)
+L'observable si sottoscrive e imposta la traccia selezionata con la traccia corrente, ossia i dati ricevuti da Spotify diventano la traccia
+che si vuole visualizzare 
